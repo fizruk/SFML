@@ -10,10 +10,6 @@ module SFML.Graphics.Shader
 ,   setFloat2Parameter
 ,   setFloat3Parameter
 ,   setFloat4Parameter
-,   setVector2Parameter
-,   setVector3Parameter
-,   setColorParameter
-,   setTransformParameter
 ,   setTextureParameter
 ,   setCurrentTextureParameter
 ,   bind
@@ -247,74 +243,6 @@ foreign import ccall unsafe "sfShader_setFloat4Parameter"
     sfShader_setFloat4Parameter :: Shader -> CString -> CFloat -> CFloat -> CFloat -> CFloat -> IO ()
 
 --CSFML_GRAPHICS_API void sfShader_setFloat4Parameter(sfShader* shader, const char* name, float x, float y, float z, float w);
-
-
--- | Change a 2-components vector parameter of a shader.
-setVector2Parameter
-    :: Shader
-    -> String -- ^ Name of the parameter in the shader
-    -> Vec2f  -- ^ Vector to assign
-    -> IO ()
-
-setVector2Parameter shader name vec =
-    withCString name $ \cname ->
-    with vec $ sfShader_setVector2Parameter_helper shader cname
-
-foreign import ccall unsafe "sfShader_setVector2Parameter_helper"
-    sfShader_setVector2Parameter_helper :: Shader -> CString -> Ptr Vec2f -> IO ()
-
---CSFML_GRAPHICS_API void sfShader_setVector2Parameter(sfShader* shader, const char* name, sfVector2f vector);
-
-
--- | Change a 3-components vector parameter of a shader.
-setVector3Parameter
-    :: Shader
-    -> String -- ^ Name of the parameter in the shader
-    -> Vec3f  -- ^ Vector to assign
-    -> IO ()
-
-setVector3Parameter shader name vec =
-    withCString name $ \cname ->
-    with vec $ sfShader_setVector3Parameter_helper shader cname
-
-foreign import ccall unsafe "sfShader_setVector3Parameter_helper"
-    sfShader_setVector3Parameter_helper :: Shader -> CString -> Ptr Vec3f -> IO ()
-
---CSFML_GRAPHICS_API void sfShader_setVector3Parameter(sfShader* shader, const char* name, sfVector3f vector);
-
-
--- | Change a color parameter of a shader.
-setColorParameter
-    :: Shader
-    -> String -- ^ Name of the parameter in the shader
-    -> Color  -- ^ Color to assign
-    -> IO ()
-
-setColorParameter shader name color =
-    withCString name $ \cname ->
-    with color $ sfShader_setColorParameter_helper shader cname
-
-foreign import ccall unsafe "sfShader_setColorParameter_helper"
-    sfShader_setColorParameter_helper :: Shader -> CString -> Ptr Color -> IO ()
-
---CSFML_GRAPHICS_API void sfShader_setColorParameter(sfShader* shader, const char* name, sfColor color);
-
-
--- | Change a matrix parameter of a shader.
-setTransformParameter
-    :: Shader
-    -> String    -- ^ Name of the parameter in the shader
-    -> Transform -- ^ Transform to assign
-    -> IO ()
-
-setTransformParameter shader name transf =
-    withCString name $ \cname ->
-    with transf $ sfShader_setTransformParameter_helper shader cname
-
-foreign import ccall unsafe "sfShader_setTransformParameter_helper"
-    sfShader_setTransformParameter_helper :: Shader -> CString -> Ptr Transform -> IO ()
-
---CSFML_GRAPHICS_API void sfShader_setTransformParameter(sfShader* shader, const char* name, sfTransform transform);
 
 
 -- | Change a texture parameter of a shader.

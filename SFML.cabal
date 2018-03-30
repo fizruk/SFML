@@ -116,7 +116,6 @@ library
       cbits/SFML/Graphics/RectangleShape_helper.c
       cbits/SFML/Graphics/RenderTexture_helper.c
       cbits/SFML/Graphics/RenderWindow_helper.c
-      cbits/SFML/Graphics/Shader_helper.c
       cbits/SFML/Graphics/Shape_helper.c
       cbits/SFML/Graphics/Sprite_helper.c
       cbits/SFML/Graphics/Text_helper.c
